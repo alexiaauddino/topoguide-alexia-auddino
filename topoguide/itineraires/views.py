@@ -1,8 +1,8 @@
 from django.template import loader
-from django.http import HttpResponse
+from django.http import Http404, HttpResponse
 from django.shortcuts import render
 
-from .models import Itineraire
+from .models import Itineraire, Sortie
 
 # Create your views here.
 
@@ -21,3 +21,11 @@ def itineraires(request):
             'itineraire_list': itineraire_list,
         }
     return HttpResponse(template.render(context, request))
+
+def sorties(request, itineraire_id):
+    try:
+        itineraire= Itineraire.objects.get(pk=itineraire_id)
+        sorties_list = Sortie.objects.filter(itineraire=itineraire).all()
+    except Itineraire.DoesNotExist:
+        raise Http404("L'intinéraire n'existe pas")
+    return render(request, 'itineraires/sorties.html', {'itineraire': itineraire, 'sorties_list': sorties_list})
