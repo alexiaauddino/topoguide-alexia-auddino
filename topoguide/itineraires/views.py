@@ -1,6 +1,7 @@
 from django.template import loader
 from django.http import Http404, HttpResponse
 from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
 
 from .models import Itineraire, Sortie
 

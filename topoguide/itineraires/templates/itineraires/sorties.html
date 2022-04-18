@@ -1,55 +1,5 @@
-<!doctype html>
-<html lang="en">
-  
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
-    <header>
-      <!-- Navbar -->
-      <nav class="navbar navbar-expand-lg navbar-light bg-white">
-        <div class="container-fluid">
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-mdb-toggle="collapse"
-            data-mdb-target="#navbarExample01"
-            aria-controls="navbarExample01"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <i class="fas fa-bars"></i>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarExample01">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item active">
-                <a class="nav-link" aria-current="page" href="#">Itinéraires</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Sorties</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Ajout d'une sortie</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">À propos</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-      <!-- Navbar -->
-    
-      <!-- Jumbotron -->
-      <div class="p-5 text-center bg-light">
-        <h1 class="mb-3">Trip review</h1>
-        <h4 class="mb-3">by Alexia Auddino</h4>
-      </div>
-      <!-- Jumbotron -->
-    </header>
+{% extends "itineraires/base.html" %}
+{% block content %}
     <div class="container mt-3">
         <h2> Sorties {{ itineraire.titre }} </h2>
             <p>  </p>
@@ -61,6 +11,7 @@
                 <th scope="col"> Par </th>
                 <th scope="col"> Date </th>
                 <th scope="col">  </th>
+                <th scope="col">  </th>
                 <th scope="col">  <a href="" class="btn btn-info"> Ajouter une sortie </a> </th>
             </tr>
         </thead> 
@@ -70,14 +21,13 @@
                         <th scope="row"> </th>
                         <td>{{ sortie.utilisateur.username }}</td>
                         <td>{{ sortie.date_sortie }} </td>
-                        <td><a href="sortie/{{ sortie.id }}/" class="btn btn-info"> Consulter </a>
+                        <td><a href="sortie/{{ sortie.id }}/" class="btn btn-info"> Consulter </a> </td> 
                         <!--seulement pour utilisateur connecté -->
-                        <a href="sortie/{{ sortie.id }}/" class="btn btn-info"> Modifier </a></td> 
+                        <td> <a href=" " class="btn btn-info"> Modifier </a></td> 
                     </tr>
             {% endfor %}
         </tbody>
         </table>  
         {% endif %} 
   </div>
-
-</html>
+  {% endblock %}
