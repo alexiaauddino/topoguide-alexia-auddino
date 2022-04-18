@@ -12,7 +12,11 @@
                 <th scope="col"> Date </th>
                 <th scope="col">  </th>
                 <th scope="col">  </th>
-                <th scope="col">  <a href="" class="btn btn-info"> Ajouter une sortie </a> </th>
+                {% if user.is_authenticated%}
+                  <th scope="col">  <a href="/itineraires/sorties/{{ itineraire.id }}/nouvelle_sortie" class="btn btn-info"> Ajouter une sortie </a> </th>
+                {% else %}
+                  <th scope="col"> </th>
+                {% endif %}
             </tr>
         </thead> 
         <tbody>  
@@ -23,7 +27,13 @@
                         <td>{{ sortie.date_sortie }} </td>
                         <td><a href="sortie/{{ sortie.id }}/" class="btn btn-info"> Consulter </a> </td> 
                         <!--seulement pour utilisateur connecté -->
-                        <td> <a href=" " class="btn btn-info"> Modifier </a></td> 
+                        {% if user.is_authenticated%}
+                          {% if user.username == sortie.utilisateur.username%}
+                              <td> <a href=" " class="btn btn-info"> Modifier </a></td>
+                          {% endif %} 
+                        {% else %}
+                            <td></td> 
+                        {% endif %}
                     </tr>
             {% endfor %}
         </tbody>

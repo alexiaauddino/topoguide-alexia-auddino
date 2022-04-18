@@ -1,8 +1,10 @@
 from django.template import loader
-from django.http import Http404, HttpResponse
-from django.shortcuts import render
+from django.http import Http404, HttpResponse, HttpResponseRedirect
+from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
+from django.urls import reverse
 
+from .forms import SortieForm
 from .models import Itineraire, Sortie
 
 # Create your views here.
@@ -33,9 +35,26 @@ def sorties(request, itineraire_id):
     return render(request, 'itineraires/sorties.html', {'itineraire': itineraire, 'sorties_list': sorties_list})
 
 
-def details(request, itineraire_id, sortie_id):
+def details(request, sortie_id, itineraire_id):
     try:
         sortie_detail = Sortie.objects.get(pk=sortie_id)
     except Sortie.DoesNotExist:
         raise Http404("La sortie n'existe pas")
     return render(request, 'itineraires/details.html', {'sortie_detail' : sortie_detail, 'itineraire_id' : itineraire_id})
+
+@login_required
+def nouvelle_sortie(request, itineraire_id):
+    submitted = False
+    if request.method == 'POST':
+        form = SortieForm(request.POST)
+        if form.is_valid :
+            form = form.save(commit=False)
+            form.utilisateur = request.user
+            form.itineraire = Itineraire.objects.get(pk=itineraire_id)
+            form.save()
+            submitted = True
+    else : 
+        form = SortieForm
+        if submitted in request.GET:
+            submitted = True
+    return render(request, 'itineraires/nouvelle_sortie.html', {'form' : form, 'itineraire_id' : itineraire_id, 'submitted' : submitted})

@@ -28,11 +28,6 @@
               <li class="nav-item active">
                 <a class="nav-link" aria-current="page" href="/itineraires/">Itinéraires</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Sorties</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Ajout d'une sortie</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">À propos</a>
@@ -40,9 +35,9 @@
             </ul>
           </div>
           {% if user.is_authenticated%}
-              <button class="btn btn-light ms-3"> <a href="/accounts/logout/"> Logout </a></button>
+              <a href="/accounts/logout/" class="btn btn-danger"> Logout </a>
           {% else %}
-              <button class="btn btn-light ms-3"> <a href="/accounts/login/"> Login </a></button>
+              <a href="/accounts/login/" class="btn btn-success"> Login </a>
           {% endif %}
         </div>
       </nav>

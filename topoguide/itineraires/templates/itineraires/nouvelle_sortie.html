@@ -1,0 +1,24 @@
+{% extends "itineraires/base.html" %}
+{% block content %}
+<div class="container mt-3">
+    <h2> Editer une sortie : </h2>
+    <br/> <br/>
+    {% if submitted  %}
+        <meta http-equiv = "refresh" content = "3; url =/itineraires/sorties/{{ itineraire_id }}" />
+        <p> La sortie a été correctement ajoutée ! </p>
+    {% else %}
+        <form action="" method="POST">
+            {% csrf_token %}
+
+            {{ form.as_p}}
+            <center>
+            <input class="btn btn-success" type="submit" value="Enregistrer">
+            <a href="/itineraires/sorties/{{ itineraire_id }}" class="btn btn-danger"> Annuler </a>
+            </center>
+        </form>
+    {% endif %}
+
+   
+</div>
+
+{% endblock %}
