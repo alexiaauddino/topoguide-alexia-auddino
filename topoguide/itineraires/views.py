@@ -22,10 +22,19 @@ def itineraires(request):
         }
     return HttpResponse(template.render(context, request))
 
+
 def sorties(request, itineraire_id):
     try:
         itineraire= Itineraire.objects.get(pk=itineraire_id)
         sorties_list = Sortie.objects.filter(itineraire=itineraire).all()
     except Itineraire.DoesNotExist:
-        raise Http404("L'intinéraire n'existe pas")
+        raise Http404("L'itinéraire n'existe pas")
     return render(request, 'itineraires/sorties.html', {'itineraire': itineraire, 'sorties_list': sorties_list})
+
+
+def details(request, itineraire_id, sortie_id):
+    try:
+        sortie_detail = Sortie.objects.get(pk=sortie_id)
+    except Sortie.DoesNotExist:
+        raise Http404("La sortie n'existe pas")
+    return render(request, 'itineraires/details.html', {'sortie_detail' : sortie_detail, 'itineraire_id' : itineraire_id})

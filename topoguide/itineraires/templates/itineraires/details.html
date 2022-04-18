@@ -50,34 +50,47 @@
       </div>
       <!-- Jumbotron -->
     </header>
-    <div class="container mt-3">
-        <h2> Sorties {{ itineraire.titre }} </h2>
-            <p>  </p>
-        {% if sorties_list%}
-        <table class="table table-hover">
-        <thead>
-            <tr>
-                <th scope="row"> </th>
-                <th scope="col"> Par </th>
-                <th scope="col"> Date </th>
-                <th scope="col">  </th>
-                <th scope="col">  <a href="" class="btn btn-info"> Ajouter une sortie </a> </th>
-            </tr>
-        </thead> 
-        <tbody>  
-            {% for sortie in sorties_list %}
+
+    <body>
+        <div class="container mt-3">
+            <h2> <a href="/itineraires/sorties/{{ sortie_detail.itineraire.id }}"> {{sortie_detail.itineraire.titre}} </a> - Sortie de {{ sortie_detail.utilisateur.username }} </h2>
+                <p>  </p>
+            {% if sortie_detail%}
+            <table class="table table-hover">
+            <thead>
+            </thead> 
+            <tbody>  
                     <tr>
-                        <th scope="row"> </th>
-                        <td>{{ sortie.utilisateur.username }}</td>
-                        <td>{{ sortie.date_sortie }} </td>
-                        <td><a href="sortie/{{ sortie.id }}/" class="btn btn-info"> Consulter </a>
-                        <!--seulement pour utilisateur connecté -->
-                        <a href="sortie/{{ sortie.id }}/" class="btn btn-info"> Modifier </a></td> 
-                    </tr>
-            {% endfor %}
-        </tbody>
-        </table>  
-        {% endif %} 
-  </div>
+                        <th scope="row"> Date </th>
+                        <td>{{ sortie_detail.date_sortie }}</td>
+                      </tr>
+                      <tr>
+                        <th scope="row"> Durée réelle </th>
+                        <td>{{ sortie_detail.duree_reelle }} h</td>
+                      </tr>
+                      <tr>
+                        <th scope="row"> Nombre de participants </th>
+                        <td>{{ sortie_detail.nombre_participants }}</td>
+                      </tr>
+                      <tr>
+                        <th scope="row"> Type de randonneurs </th>
+                        <td>{{ sortie_detail.get_experience_groupe_display }}</td>
+                      </tr>
+                      <tr>
+                        <th scope="row"> Météo </th>
+                        <td>{{ sortie_detail.get_meteo_display }}</td>
+                      </tr>
+                      <tr>
+                        <th scope="row"> Difficulté ressentie</th>
+                        <td>{{ sortie_detail.difficulte_ressentie }} /5  </td>
+                      </tr>
+            </tbody>
+            </table>  
+            {% endif %} 
+      </div>
+
+    
+    </body>
 
 </html>
+
