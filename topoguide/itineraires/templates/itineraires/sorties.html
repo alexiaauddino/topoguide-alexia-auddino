@@ -25,14 +25,14 @@
                         <th scope="row"> </th>
                         <td>{{ sortie.utilisateur.username }}</td>
                         <td>{{ sortie.date_sortie }} </td>
-                        <td><a href="sortie/{{ sortie.id }}/" class="btn btn-info"> Consulter </a> </td> 
+                        <td><a href="sortie/{{ sortie.id }}/" class="btn btn-outline-primary"> Consulter </a> </td> 
                         <!--seulement pour utilisateur connecté -->
                         {% if user.is_authenticated%}
                           {% if user.username == sortie.utilisateur.username%}
-                              <td> <a href=" " class="btn btn-info"> Modifier </a></td>
+                              <td> <a href="/itineraires/sorties/{{ itineraire.id }}/modif_sortie/{{ sortie.id }} " class="btn btn-outline-danger"> Modifier </a></td>
                           {% endif %} 
                         {% else %}
-                            <td></td> 
+                            <td> </td> 
                         {% endif %}
                     </tr>
             {% endfor %}

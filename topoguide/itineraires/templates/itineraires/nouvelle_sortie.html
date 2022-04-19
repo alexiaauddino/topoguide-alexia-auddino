@@ -5,7 +5,7 @@
     <br/> <br/>
     {% if submitted  %}
         <meta http-equiv = "refresh" content = "3; url =/itineraires/sorties/{{ itineraire_id }}" />
-        <p> La sortie a été correctement ajoutée ! </p>
+        <p> La sortie a été correctement enregistrée ! </p>
     {% else %}
         <form action="" method="POST">
             {% csrf_token %}

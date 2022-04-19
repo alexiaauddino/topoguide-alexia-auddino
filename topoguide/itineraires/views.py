@@ -1,6 +1,6 @@
 from django.template import loader
 from django.http import Http404, HttpResponse, HttpResponseRedirect
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 
@@ -58,3 +58,19 @@ def nouvelle_sortie(request, itineraire_id):
         if submitted in request.GET:
             submitted = True
     return render(request, 'itineraires/nouvelle_sortie.html', {'form' : form, 'itineraire_id' : itineraire_id, 'submitted' : submitted})
+
+@login_required
+def modif_sortie(request, itineraire_id, sortie_id):
+    submitted = False
+    sortie = get_object_or_404(Sortie, id=sortie_id)
+    if request.method == 'POST':
+        form = SortieForm(request.POST or None, instance=sortie)
+        if form.is_valid :
+            form = form.save(commit=False)
+            form.utilisateur = request.user
+            form.itineraire = Itineraire.objects.get(pk=itineraire_id)
+            form.save()
+            submitted=True
+    else : 
+        form = SortieForm(request.POST or None, instance=sortie)
+    return render(request, 'itineraires/nouvelle_sortie.html', {'form' : form, 'itineraire_id' : itineraire_id, 'sortie_id' : sortie_id, 'submitted' : submitted})
