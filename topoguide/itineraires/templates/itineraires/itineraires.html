@@ -28,6 +28,7 @@
           </tr>
       </thead> 
       <tbody>  
+      {% comment %} si l'utilisateur faitune recherche, on affiche le résultat de la recherche {% endcomment %}
       {% if search %} 
         {% for itineraire in itineraire_list %}
             {% if search|lower in itineraire.titre|lower %}
@@ -46,6 +47,7 @@
                 </tr>
             {% endif %}
         {% endfor %}
+        {% comment %} sinon on affiche tous les itineraires {% endcomment %}
       {% else %}   
         {% for itineraire in itineraire_list %}
                 <tr>

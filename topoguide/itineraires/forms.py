@@ -1,8 +1,10 @@
-from tkinter import Widget
 from django import forms
 from django.forms import ModelForm
 from .models import Sortie
 
+# formulaire pour ajouter ou modifier une sortie, il prend en compte tous les champs d'une sortie du modèle
+# Sortie, sauf l'utilisateur (imposé puisque c'est l'utilisateur connecté) et l'itinéraire puisque la sortie
+# s'ajoute pour l'itinéraire pour lequel on regarde les sorties
 class SortieForm(ModelForm):
     class Meta:
         model = Sortie

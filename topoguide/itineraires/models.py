@@ -5,6 +5,9 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 # Create your models here.
 
 class Itineraire(models.Model):
+    """ Modèle qui permet de générer les différents champs d'informations pour un itinéaire
+    dans la base de données et d'y accéder à partir des différents champs explicités ci-dessous
+    """
     titre = models.CharField(max_length=200)
     point_depart = models.CharField(max_length=200)
     description = models.CharField(max_length=1000)
@@ -16,9 +19,13 @@ class Itineraire(models.Model):
     duree_estimee = models.IntegerField()
     difficulte_estimee = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(5)])
     def __str__(self):
+        """ Permet de renvoyer avec la fonction string, le titre correctement pour visualiser """
         return self.titre
 
 class Sortie(models.Model):
+    """ Modèle qui permet de générer les différents champs d'informations pour une sortie
+    dans la base de données et d'y accéder à partir des différents champs explicités ci-dessous
+    """
     utilisateur = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     itineraire = models.ForeignKey(Itineraire, on_delete=models.CASCADE)
     date_sortie = models.DateField()
@@ -44,4 +51,5 @@ class Sortie(models.Model):
     )
     difficulte_ressentie = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(5)])
     def __str__(self):
+        """ Permet de renvoyer avec la fonction string, le nom d'utilisateur correctement pour visualiser """
         return self.utilisateur.username
