@@ -3,8 +3,8 @@
 
       <form action="{% url 'itineraires' %}" method="get">
         <div class="input-group">
-            <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" name="search"/>
-            <button type="submit" class="btn btn-outline-primary">search</button>
+            <input type="search" class="form-control rounded" placeholder="Rechercher un itinéraire..." aria-label="Search" aria-describedby="search-addon" name="search"/>
+            <button type="submit" class="btn btn-outline-primary"> Rechercher</button>
         </div>
     </form>
         <div class="container mt-3">
@@ -42,7 +42,7 @@
                     <td>{{ itineraire.denivele_pos}} m</td>
                     <td>{{ itineraire.denivele_neg}} m</td>
                     <td>{{ itineraire.duree_estimee}} h</td>
-                    <td>{{ itineraire.difficulte_estimee}} /5</td>
+                    <td>{{ itineraire.difficulte_estimee}} / 5</td>
                 </tr>
             {% endif %}
         {% endfor %}
@@ -59,7 +59,7 @@
                   <td>{{ itineraire.denivele_pos}} m</td>
                   <td>{{ itineraire.denivele_neg}} m</td>
                   <td>{{ itineraire.duree_estimee}} h</td>
-                  <td>{{ itineraire.difficulte_estimee}} /5</td>
+                  <td>{{ itineraire.difficulte_estimee}} / 5</td>
                 </tr>
         {% endfor %}
       {% endif %}

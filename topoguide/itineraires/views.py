@@ -1,8 +1,6 @@
-from django.template import loader
-from django.http import Http404, HttpResponse, HttpResponseRedirect
-from django.shortcuts import get_object_or_404, redirect, render
+from django.http import Http404
+from django.shortcuts import get_object_or_404, render
 from django.contrib.auth.decorators import login_required
-from django.urls import reverse
 
 from .forms import SortieForm
 from .models import Itineraire, Sortie
@@ -10,7 +8,6 @@ from .models import Itineraire, Sortie
 # Create your views here.
 
 def itineraires(request):
-    template = loader.get_template('itineraires/itineraires.html')
     if request.method == 'GET': # If the form is submitted
         search = request.GET.get('search', None)
         itineraire_list = Itineraire.objects.order_by('titre')[:]
@@ -23,7 +20,7 @@ def itineraires(request):
         context = {
             'itineraire_list': itineraire_list,
         }
-    return HttpResponse(template.render(context, request))
+    return render(request, 'itineraires/itineraires.html', context)
 
 
 def sorties(request, itineraire_id):

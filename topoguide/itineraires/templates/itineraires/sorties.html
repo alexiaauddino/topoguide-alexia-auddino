@@ -10,10 +10,12 @@
                 <th scope="row"> </th>
                 <th scope="col"> Par </th>
                 <th scope="col"> Date </th>
+                <th scope="col"> <center> Difficulté ressentie </center> </th>
+                <th scope="col">  </th>
                 <th scope="col">  </th>
                 <th scope="col">  </th>
                 {% if user.is_authenticated%}
-                  <th scope="col">  <a href="/itineraires/sorties/{{ itineraire.id }}/nouvelle_sortie" class="btn btn-info"> Ajouter une sortie </a> </th>
+                  <th scope="col">  <a href="/itineraires/sorties/{{ itineraire.id }}/nouvelle_sortie" class="btn btn-warning"> Ajouter une sortie </a> </th>
                 {% else %}
                   <th scope="col"> </th>
                 {% endif %}
@@ -25,6 +27,7 @@
                         <th scope="row"> </th>
                         <td>{{ sortie.utilisateur.username }}</td>
                         <td>{{ sortie.date_sortie }} </td>
+                        <td> <center> {{ sortie.difficulte_ressentie }} / 5  </center> </td>
                         <td><a href="sortie/{{ sortie.id }}/" class="btn btn-outline-primary"> Consulter </a> </td> 
                         <!--seulement pour utilisateur connecté -->
                         {% if user.is_authenticated%}
@@ -32,8 +35,9 @@
                               <td> <a href="/itineraires/sorties/{{ itineraire.id }}/modif_sortie/{{ sortie.id }} " class="btn btn-outline-danger"> Modifier </a></td>
                           {% endif %} 
                         {% else %}
-                            <td> </td> 
+                            <td>  </td> 
                         {% endif %}
+                        <td>  </td> 
                     </tr>
             {% endfor %}
         </tbody>
