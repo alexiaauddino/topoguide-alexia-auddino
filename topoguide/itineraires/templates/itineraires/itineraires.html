@@ -34,7 +34,7 @@
             {% if search|lower in itineraire.titre|lower %}
                 <tr>
                     <th scope="row"> </th>
-                    <td><a href="sorties/{{ itineraire.id }}/">{{ itineraire.titre }}</a></td>
+                    <td><a href="{%url 'sorties' itineraire_id=itineraire.id %}">{{ itineraire.titre }}</a></td>
                     <td>{{ itineraire.point_depart }}</td>
                     <td>{{ itineraire.description }} </td>
                     <td>{{ itineraire.altitude_depart }} m</td>
@@ -52,7 +52,7 @@
         {% for itineraire in itineraire_list %}
                 <tr>
                   <th scope="row"> </th>
-                  <td><a href="sorties/{{ itineraire.id }}/">{{ itineraire.titre }}</a></td>
+                  <td><a href="{%url 'sorties' itineraire_id=itineraire.id %}">{{ itineraire.titre }}</a></td>
                   <td>{{ itineraire.point_depart }}</td>
                   <td>{{ itineraire.description }} </td>
                   <td>{{ itineraire.altitude_depart }} m</td>

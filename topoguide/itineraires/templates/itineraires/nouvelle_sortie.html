@@ -13,7 +13,7 @@
             {{ form.as_p}}
             <center>
             <input class="btn btn-success" type="submit" value="Enregistrer">
-            <a href="/itineraires/sorties/{{ itineraire_id }}" class="btn btn-danger"> Annuler </a>
+            <a href="{% url 'itineraires' %}" class="btn btn-danger"> Annuler </a>
             </center>
         </form>
     {% endif %}
