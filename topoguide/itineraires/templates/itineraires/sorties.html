@@ -70,9 +70,9 @@
             {% endfor %}
         </tbody>
         </table> 
+        {% endif %} 
         {% if user.is_authenticated%}
         <a href="{%url 'nouvelle_sortie' itineraire_id=itineraire.id %}" class="btn btn-warning"> Ajouter une sortie </a>
-        {% endif %} 
         {% endif %} 
 
         <br/> <br/>
